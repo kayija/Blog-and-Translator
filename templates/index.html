@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <!--post_list is from the PostList class-->
+        <!--m-3 adds a margin of 3 between the cards-->
+        {% for post in post_list %}
+        <div class="card m-3">
+            <div class="card-body">
+                <h2 class="card-title">
+                    {{post.title}}
+                </h2>
+                <p class="card-text">
+                    <!--| slice:"400" This will only display the first 400 words.-->
+                    {{post.content | slice:"400"}}
+                </p>
+                <p class="card-text">
+                    Author: {{post.author | title}}
+                </p>
+                <!--post.slug is a url in the database to point the row in the database-->
+                <!--blog_view is from the BlogView under views.py-->
+                <a class="btn btn-primary" href="{% url 'blog_view' post.slug %}">Read More</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+
