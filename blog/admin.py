@@ -1,4 +1,5 @@
 from django.contrib import admin
+# this will import the model
 from .models import Post
 
 
